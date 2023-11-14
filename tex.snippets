@@ -44,7 +44,104 @@ def add_row(snip):
 
 endglobal
 
-# start
+# snippets start
+
+# function restriction
+snippet rest "bar notation for function restriction" w
+\\left . ${1} \\right|_\{${2}\} ${0}
+endsnippet
+
+# mathfrak
+snippet frak "mathfrak" i
+\\mathfrak{${1}}$0
+endsnippet
+
+# exponential
+snippet exp "exponential" i
+\\exp \left \\{ ${1} \right \\}${0}
+endsnippet
+
+# column vector
+snippet colvec "column vector" i
+\\left [
+\\begin{smallmatrix}
+	${1}
+\\end{smallmatrix}
+\\right ]${0}
+endsnippet
+
+# custom norm
+snippet cval "custom vertical line notation for norm" w
+\\|${1}\\|_${0}
+endsnippet
+
+# norm
+snippet val "vertical line notation for norm" w
+\\|${1}\\|${0}
+endsnippet
+
+# full line with space above it
+snippet fline "full line" b
+\\\\
+\centerline{\rule{\textwidth}{0.75pt}}
+${0}
+endsnippet
+
+# line with space above it
+snippet sline "line" b
+\\\\
+\centerline{\rule{0.75\textwidth}{0.75pt}}
+${0}
+endsnippet
+
+# line without space above it
+snippet line "line" b
+\centerline{\rule{0.75\textwidth}{0.75pt}}
+${0}
+endsnippet
+
+snippet stmt "statment" b
+\\textit{Statement}:
+${VISUAL}
+\\\\
+\centerline{\rule{0.75\textwidth}{0.75pt}}
+${0}
+endsnippet
+
+# Grobner bases (plural)
+snippet GB "grobner bases text with umlaut" i
+Gr\\"obner bases${0}
+endsnippet
+
+# Grobner basis
+snippet Gb "grobner basis text with umlaut" i
+Gr\\"obner basis${0}
+endsnippet
+
+# Grobner basis
+snippet gb "grobner basis notation" i
+\\{ g_1, \ldots, g_t \\}${0}
+endsnippet
+
+# default polynomial ring
+snippet dpr "default polynomial ring" i
+K[x_1, \ldots, x_n]${0}
+endsnippet
+
+# Polynomial ring over custom base ring
+snippet bpr "base polynomial ring" i
+${1:K}[x_1, \ldots, x_n]${0}
+endsnippet
+
+# custom polynomial ring
+snippet cpr "Polynomial ring" i
+${1:K}[${2:x}_{${3:1}}, \ldots, $2_{${4:n}}]${0}
+endsnippet
+
+# suppress qed symbol
+snippet suppqed "suppress qed" i
+\\renewcommand{\\qedsymbol}{}$0
+endsnippet
 
 # calR
 snippet cr "mathcal{R}" i
@@ -82,9 +179,14 @@ snippet 2mat "pmatrix" b
 ${0:${VISUAL}}
 endsnippet
 
+# big direct sum symbol
+snippet bp "big o plus" i
+\bigoplus${0}
+endsnippet
+
 # direct sum symbol
-snippet ds "o plus" i
-\oplus${0}
+snippet opl "o plus" i
+\oplus_{${1}}${0}
 endsnippet
 
 # frac
@@ -92,9 +194,24 @@ snippet frac "fractions" i
 \frac{${1:num}}{${2:denom}}${0}
 endsnippet
 
-# ellipses
-snippet el "ellipse" i
-${1:x}_{${2:1}}, \ldots , $1_{${3:n}} \in ${0}
+# leading term variable range
+snippet ltvr "leading term variable range" i
+LT(${1:g}_{${2:1}}), \ldots , LT($1_{${3:t}})${0}
+endsnippet
+
+# custom variable range
+snippet cvr "custom variable range" i
+${1:x}_{${2:1}}, \ldots , $1_{${3:n}}${0}
+endsnippet
+
+# g variable range
+snippet gvr "g variable range" i
+g_{1}, \ldots , g_{${1:t}}${0}
+endsnippet
+
+# x variable range
+snippet xvr "x variable range" i
+x_{1}, \ldots , x_{${1:n}}${0}
 endsnippet
 
 # inverse
@@ -102,14 +219,29 @@ snippet iv "inverse" i
 ^\{-1\}
 endsnippet
 
-# set
-snippet st "set" w
+# set builder
+snippet stb "set" w
 \\{$1 \: : \: $2\\}$0
 endsnippet
 
 # conditional set
 snippet ust "set without condition" w
 \\{$1\\}$0
+endsnippet
+
+# Floor
+snippet floor "floor" w
+\\lfloor ${1} \\rfloor ${0}
+endsnippet
+
+# Ceiling
+snippet ceil "ceiling" w
+\\lceil ${1} \\rceil ${0}
+endsnippet
+
+# set
+snippet set "set notation" w
+\\{${1}\\}${0}
 endsnippet
 
 # Generated group
@@ -134,16 +266,58 @@ snippet beg "begin-end block" b
 \\end{$1}
 endsnippet
 
+snippet ytab "young tableaux" b
+\\begin{ytableau}
+	${0:${VISUAL}}
+\\end{ytableau}
+endsnippet
+
+snippet nota "notation" b
+\\begin{nota}
+	${0:${VISUAL}}
+\\end{nota}
+endsnippet
+
 snippet prop "proposition" b
 \\begin{proposition}[${1}]
 	${0:${VISUAL}}
 \\end{proposition}
 endsnippet
 
+snippet cases "cases" b
+\\begin{cases}
+	${0:${VISUAL}}
+\\end{cases}
+endsnippet
+
+snippet eg "example" b
+\\begin{example}
+	${0:${VISUAL}}
+\\end{example}
+endsnippet
+
 snippet def "definition" b
 \\begin{definition}[${1}]
 	${0:${VISUAL}}
 \\end{definition}
+endsnippet
+
+snippet obsv "observation" b
+\\begin{observation}
+	${0:${VISUAL}}
+\\end{observation}
+endsnippet
+
+snippet con "conjecture" b
+\\begin{conjecture}
+	${0:${VISUAL}}
+\\end{conjecture}
+endsnippet
+
+snippet rem "remark" b
+\\begin{remark}
+	${0:${VISUAL}}
+\\end{remark}
 endsnippet
 
 snippet thm "theorem" b
@@ -164,6 +338,12 @@ snippet prob "problem" b
 \\end{prob}
 endsnippet
 
+snippet gat "gather* env" b
+\\begin{gather*}
+	${0:${VISUAL}}
+\\end{gather*}
+endsnippet
+
 snippet ali "align* env" b
 \\begin{align*}
 	${0:${VISUAL}}
@@ -182,6 +362,24 @@ snippet lem "lemma" b
 \\end{lemma}
 endsnippet
 
+snippet not "notation" b
+\\begin{notation}
+	${0:${VISUAL}}
+\\end{notation}
+endsnippet
+
+snippet cor "corollary" b
+\\begin{corollary}
+	${0:${VISUAL}}
+\\end{corollary}
+endsnippet
+
+snippet proof "proof" b
+\\begin{proof}
+	${0:${VISUAL}}
+\\end{proof}
+endsnippet
+
 snippet claim "claim environment" b
 \\begin{claim}
 	${0:${VISUAL}}
@@ -191,7 +389,7 @@ endsnippet
 snippet pf "custom proof environment" b
 \begin{pf}
 	${1:${VISUAL}}
-	$\hfill\blacksquare$
+	$\hfill\square$
 \end{pf}
 ${0}
 endsnippet
@@ -237,8 +435,8 @@ snippet fig "Figure environment" b
 endsnippet
 
 snippet enuma "Enumerate alphabetical" b
-\begin{enumerate}[label=(\alph*)]
-	\item $0
+\begin{enumerate}[(a)]
+	\item ${0:${VISUAL}}
 \end{enumerate}
 endsnippet
 
